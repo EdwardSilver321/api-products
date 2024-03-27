@@ -14,15 +14,18 @@ Su propósito es, proporcionar funcionalidades para consultar productos almacena
 
 
 ## Instalación en windows
-1. **Repositório Git:** git clone https://github.com/tu_usuario/api-consulta-productos.git
+1. **Repositório Git:** clonamos el proyecto  _git clone https://github.com/tu_usuario/api-consulta-productos.git_
 
-2. **Instalamos docker:**  https://www.docker.com/products/docker-desktop/
+2. **Instalamos docker:**  _https://www.docker.com/products/docker-desktop_
 
-3. **Imagen docker:** creamos la imagen desde la carpeta raíz del proyecto, ejecutando el comando  _docker build -t api-products ._
+3. **Imagen docker:** creamos la imagen desde la carpeta raíz del proyecto, ejecutando el comando desde cmd _docker build -t api-products ._
 
-4. **Desplegamos el container:**  _docker run -p 8080:8080 api-products_
+4. **Desplegamos el container:**  _docker run -p 8091:8091 api-products_
 
 ## Probar
-- **Swagger:** http://localhost:8080/swagger-ui.html
-- **H2:** http://localhost:8080/h2-console URL: jdbc:h2:mem:products
+- **Swagger:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- **H2:** [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+-	 **url:** jdbc:h2:mem:products
+-	 **user:** sa
+-	 **pass:** 
 

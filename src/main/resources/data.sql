@@ -36,3 +36,13 @@ VALUES (1, '2020-06-15 00:00:00', '2020-06-15 11:00:00', 3, 35455, 1, 30.50, 'EU
 
 INSERT INTO PRICES_ENTITY (BRAND_ID, START_DATE, END_DATE, PRICE_LIST, PRODUCT_ID, PRIORITY, PRICE, CURR)
 VALUES (1, '2020-06-15 16:00:00', '2020-12-31 23:59:59', 4, 35455, 1, 38.95, 'EUR');
+
+--RATE_ENTITY
+INSERT INTO RATE_ENTITY (priceList, name) 
+VALUES (1, 'Tarifa estándar');
+INSERT INTO RATE_ENTITY (priceList, name) 
+VALUES (2, 'Tarifa premium');
+INSERT INTO RATE_ENTITY (priceList, name) 
+VALUES (3, 'Tarifa de descuento');
+INSERT INTO RATE_ENTITY (priceList, name) 
+VALUES (4, 'Tarifa especial');

@@ -46,12 +46,12 @@ public class PricesController {
      * @param brandId   Identificador de la marca.
      * @return Respuesta HTTP con la lista de precios o un mensaje de error si no se encuentran precios.
      */
-    @GetMapping
     @Operation(summary = "Consultar precios", description = "Consulta los precios de los productos para una fecha, producto y marca especificados.")
     @ApiResponses(value = {
     	    @ApiResponse(responseCode = "200", description = "Lista de precios devuelta con éxito", content = @Content(mediaType = "application/json", schema = @Schema(implementation = PricesResponse.class))),
     	    @ApiResponse(responseCode = "404", description = "No se encontraron precios para los parámetros especificados", content = @Content(mediaType = "application/json"))
     	})
+    @GetMapping
     public ResponseEntity<List<PricesResponse>> read(@Parameter(description = "Fecha para la cual se desean obtener los precios en formato 'yyyy-MM-dd HH:mm:ss'", required = true) @RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date date,
 			            @Parameter(description = "Identificador del producto") @RequestParam(required = true) Integer productId,
 			            @Parameter(description = "Identificador de la marca") @RequestParam(required = true) Integer brandId) {
