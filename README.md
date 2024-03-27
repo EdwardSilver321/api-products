@@ -29,3 +29,5 @@ Su propósito es, proporcionar funcionalidades para consultar productos almacena
 -	 **user:** sa
 -	 **pass:** 
 
+## Arquitectura
+![arquitectura.png](arquitectura.png)
