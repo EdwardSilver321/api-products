@@ -8,14 +8,24 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase que representa la entidad de producto en la base de datos.
+ */
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "PRODUCT_ENTITY")
 public class ProductEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;
+    /**
+     * Identificador único del producto.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * Nombre del producto.
+     */
+    private String name;
 }

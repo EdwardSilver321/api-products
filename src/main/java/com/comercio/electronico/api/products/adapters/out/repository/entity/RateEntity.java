@@ -8,16 +8,29 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase que representa la entidad de tarifa en la base de datos.
+ */
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "RATE_ENTITY")
 public class RateEntity {
 
-	@Id
+    /**
+     * Identificador único de la tarifa.
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long    id;
-	private short  priceList;
-	private String name;
-	
+    private Long id;
+
+    /**
+     * Tarifa aplicada.
+     */
+    private short priceList;
+
+    /**
+     * Nombre de la tarifa.
+     */
+    private String name;
 }

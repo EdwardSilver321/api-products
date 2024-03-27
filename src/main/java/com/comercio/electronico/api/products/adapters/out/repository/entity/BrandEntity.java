@@ -8,15 +8,24 @@ import jakarta.persistence.GenerationType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase que representa la entidad de una cadena en la base de datos.
+ */
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "BRAND_ENTITY")
 public class BrandEntity {
 
-	@Id
+    /**
+     * Identificador único de la cadena.
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private String name;
+    private Long id;
+    
+    /**
+     * Nombre de la cadena.
+     */
+    private String name;
 }

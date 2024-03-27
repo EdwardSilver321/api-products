@@ -10,7 +10,6 @@ Su propósito es, proporcionar funcionalidades para consultar productos almacena
 * Swagger
 * H2
 * JPA
-* Validation
 * Mapstruct
 
 

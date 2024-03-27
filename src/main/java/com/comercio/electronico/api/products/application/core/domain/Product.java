@@ -1,34 +1,49 @@
 package com.comercio.electronico.api.products.application.core.domain;
 
 /**
- * Productos
+ * Clase que representa un producto.
  */
 public class Product {
 
-	private int id;
-	private String name;
-	
-	//CONSTRUCTORS
-	public Product() {
-	}
+    /** Identificador del producto. */
+    private int id;
 
-	public Product(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-	
-	//GETTERS AND SETTERS
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+    /** Nombre del producto. */
+    private String name;
+
+    /** Constructor vacío de la clase Product. */
+    public Product() {
+    }
+
+    /**
+     * Constructor de la clase Product con parámetros.
+     * @param id   Identificador del producto.
+     * @param name Nombre del producto.
+     */
+    public Product(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    // Getters y Setters
+
+    /** Obtiene el identificador del producto. */
+    public int getId() {
+        return id;
+    }
+
+    /** Establece el identificador del producto. */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /** Obtiene el nombre del producto. */
+    public String getName() {
+        return name;
+    }
+
+    /** Establece el nombre del producto. */
+    public void setName(String name) {
+        this.name = name;
+    }
 }
