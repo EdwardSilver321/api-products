@@ -37,12 +37,12 @@ public class ReadPricesUseCase implements ReadPricesInputPort {
      *
      * @param date     Fecha para la cual se desean obtener los precios.
      * @param productId Identificador del producto.
-     * @param brandId  Identificador de la cadena.
+     * @param brandId  Identificador de la cadena.  n                      
      * @return Lista de precios para la fecha, producto y marca especificados.
      * @throws NoPricesFoundException Excepción lanzada si no se encuentran registros para los parámetros especificados.
      */
     @Override
-    public List<Prices> read(Date date, int productId, int brandId) throws NoPricesFoundException {
+    public List<Prices> read(Date date, int productId, int brandId)  {
 
         List<Prices> prices = readPricesOutputPort.read(date, productId, brandId);
 
