@@ -18,7 +18,7 @@ Su propósito es, proporcionar funcionalidades para consultar productos almacena
 
 2. **Instalamos docker:**  _https://www.docker.com/products/docker-desktop_
 
-3. **Imagen docker:** creamos la imagen desde la carpeta raíz del proyecto, ejecutando el comando desde cmd _docker build -t api-products ._
+3. **Imagen docker:** creamos la imagen desde la carpeta raíz del proyecto, ejecutando el comando desde cmd  _docker build -t api-products ._
 
 4. **Desplegamos el container:**  _docker run -p 8080:8080 api-products_
 
