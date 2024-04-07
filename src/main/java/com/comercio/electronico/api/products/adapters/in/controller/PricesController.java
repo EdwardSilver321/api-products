@@ -15,14 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.comercio.electronico.api.products.adapters.in.controller.mapper.PricesMapper;
 import com.comercio.electronico.api.products.adapters.in.controller.response.PricesResponse;
 import com.comercio.electronico.api.products.application.core.domain.Prices;
+import com.comercio.electronico.api.products.application.core.domain.exception.NoPricesFoundException;
 import com.comercio.electronico.api.products.application.ports.in.ReadPricesInputPort;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 /**
  * Controlador para manejar las solicitudes relacionadas con los productos.
@@ -56,8 +57,13 @@ public class PricesController {
 			            @Parameter(description = "Identificador de la marca") @RequestParam(required = true) Integer brandId) {
     	
         List<Prices> prices = null;
-        prices = readPricesInputPort.read(date, productId, brandId);
-       
+        try {
+            prices = readPricesInputPort.read(date, productId, brandId);
+        } catch (NoPricesFoundException ex) {
+            // Devuelve un mensaje de error si no se encuentran precios con los parámetros especificados
+            return ResponseEntity.notFound().header("X-Error-Message", ex.getMessage()).build();
+        }
+
         // Mapea Prices a PricesResponse y lo devuelve en una respuesta HTTP
         return ResponseEntity.ok().body(prices.stream().map(pricesMapper::toPricesResponse).collect(Collectors.toList()));
     }
