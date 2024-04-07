@@ -2,6 +2,7 @@ package com.comercio.electronico.api.products.adapters.in.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.SimpleDateFormat;
@@ -139,7 +140,7 @@ public class PricesControllerIntegrationTest {
 												    	        1).getBody();
 
     	assertNotNull(responseEntity);
-		assertEquals(2, responseEntity.size());
+		assertEquals(1, responseEntity.size());
 		
 		PricesResponse pricesResponse = responseEntity.get(0);
 		Date date = sdf.parse("2020-06-15 10:00:00");
@@ -165,7 +166,7 @@ public class PricesControllerIntegrationTest {
 														    	1).getBody();
 
     	assertNotNull(responseEntity);
-		assertEquals(2, responseEntity.size());
+		assertEquals(1, responseEntity.size());
 		
 		PricesResponse pricesResponse = responseEntity.get(0);
 		Date date = sdf.parse("2020-06-16 21:00:00");
@@ -176,4 +177,20 @@ public class PricesControllerIntegrationTest {
 
     }
     
+    /**
+     * Test para verificar que no existen precios para la fecha de petición.
+     */
+    @Test
+    public void testPeticionNoPrices() throws Exception {
+    	List<PricesResponse> responseEntity = testRestTemplate.exchange(
+								    	        "/api/v1/prices?date={date}&productId={productId}&brandId={brandId}",
+								    	        HttpMethod.GET,
+								    	        null,
+								    	        new ParameterizedTypeReference<List<PricesResponse>>() {},
+								    	        "2020-05-16 21:00:00",
+										    	35455,
+										    	1).getBody();
+
+		assertNull(responseEntity);
+    }
 }
