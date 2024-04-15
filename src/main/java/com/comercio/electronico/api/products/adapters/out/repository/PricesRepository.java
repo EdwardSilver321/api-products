@@ -21,7 +21,7 @@ public interface PricesRepository extends JpaRepository<PricesEntity, Long>{
      * @param brandId  Identificador de la marca.
      * @return Lista de entidades de precios para la fecha, producto y marca especificados.
      */
-	@Query("SELECT p FROM PricesEntity p WHERE :date BETWEEN p.startDate AND p.endDate AND p.productId.id = :productId AND p.brandId.id = :brandId AND p.priority = (SELECT MAX(p2.priority) FROM PricesEntity p2 WHERE :date BETWEEN p2.startDate AND p2.endDate AND p2.productId.id = :productId AND p2.brandId.id = :brandId)")
+	@Query("SELECT p FROM PricesEntity p WHERE :date BETWEEN p.startDate AND p.endDate AND p.productId.id = :productId AND p.brandId.id = :brandId ORDER BY p.priority DESC, p.endDate ASC LIMIT 1")
     List<PricesEntity> read(Date date, int productId, int brandId);
 
 }
