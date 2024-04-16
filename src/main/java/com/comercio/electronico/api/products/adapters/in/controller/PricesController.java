@@ -1,8 +1,6 @@
 package com.comercio.electronico.api.products.adapters.in.controller;
 
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,7 +41,7 @@ public class PricesController {
      * @param date      Fecha para la cual se desean obtener los precios.
      * @param productId Identificador del producto.
      * @param brandId   Identificador de la marca.
-     * @return Respuesta HTTP con la lista de precios o un mensaje de error si no se encuentran precios.
+     * @return Respuesta HTTP con el precio o un mensaje de error si no se encuentran precios.
      */
     @Operation(summary = "Consultar precios", description = "Consulta los precios de los productos para una fecha, producto y marca especificados.")
     @ApiResponses(value = {
@@ -51,14 +49,13 @@ public class PricesController {
     	    @ApiResponse(responseCode = "404", description = "No se encontraron precios para los parámetros especificados", content = @Content(mediaType = "application/json"))
     	})
     @GetMapping
-    public ResponseEntity<List<PricesResponse>> read(@Parameter(description = "Fecha para la cual se desean obtener los precios en formato 'yyyy-MM-dd HH:mm:ss'", required = true) @RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date date,
+    public ResponseEntity<PricesResponse> read(@Parameter(description = "Fecha para la cual se desean obtener los precios en formato 'yyyy-MM-dd HH:mm:ss'", required = true) @RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date date,
 			            @Parameter(description = "Identificador del producto") @RequestParam(required = true) Integer productId,
 			            @Parameter(description = "Identificador de la marca") @RequestParam(required = true) Integer brandId) {
     	
-        List<Prices> prices = null;
-        prices = readPricesInputPort.read(date, productId, brandId);
+        Prices price = readPricesInputPort.read(date, productId, brandId);
        
         // Mapea Prices a PricesResponse y lo devuelve en una respuesta HTTP
-        return ResponseEntity.ok().body(prices.stream().map(pricesMapper::toPricesResponse).collect(Collectors.toList()));
+        return ResponseEntity.ok().body(pricesMapper.toPricesResponse(price));
     }
 }
