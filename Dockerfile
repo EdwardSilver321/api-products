@@ -14,4 +14,4 @@ RUN mvn clean package -DskipTests
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación cuando se inicie el contenedor
-CMD ["java", "-jar", "target/api-products-0.0.1.jar"]
+CMD ["java", "-jar", "target/api-products-0.0.2.jar"]

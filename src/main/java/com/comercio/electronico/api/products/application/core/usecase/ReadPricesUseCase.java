@@ -1,16 +1,16 @@
 package com.comercio.electronico.api.products.application.core.usecase;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.comercio.electronico.api.products.application.core.domain.Prices;
 import com.comercio.electronico.api.products.application.core.domain.exception.NoPricesFoundException;
 import com.comercio.electronico.api.products.application.ports.in.ReadPricesInputPort;
 import com.comercio.electronico.api.products.application.ports.out.ReadPricesOutputPort;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * Caso de uso para consultar precios de productos.
@@ -33,20 +33,20 @@ public class ReadPricesUseCase implements ReadPricesInputPort {
     }
 
     /**
-     * Consulta los precios para la fecha, producto y cadena especificados.
+     * Consulta el precio para la fecha, producto y cadena especificados.
      *
      * @param date     Fecha para la cual se desean obtener los precios.
      * @param productId Identificador del producto.
      * @param brandId  Identificador de la cadena.  n                      
-     * @return Lista de precios para la fecha, producto y marca especificados.
+     * @return un precio para la fecha, producto y marca especificados.
      * @throws NoPricesFoundException Excepción lanzada si no se encuentran registros para los parámetros especificados.
      */
     @Override
-    public List<Prices> read(Date date, int productId, int brandId)  {
+    public Prices read(Date date, int productId, int brandId)  {
 
-        List<Prices> prices = readPricesOutputPort.read(date, productId, brandId);
+        Prices prices = readPricesOutputPort.read(date, productId, brandId);
 
-        if (Objects.isNull(prices) || prices.isEmpty()) {
+        if (Objects.isNull(prices)) {
             String errorMessage = messages.getString("error.noPricesFound");
             log.error(errorMessage);
             throw new NoPricesFoundException(errorMessage);
